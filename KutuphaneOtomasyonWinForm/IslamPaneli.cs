@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KutuphaneOtomasyonWinForm.Kullanici;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +45,22 @@ namespace KutuphaneOtomasyonWinForm
             klisteForm.Show();
 
 
+
+        }
+
+        private void ekleKullanicibtn_Click(object sender, EventArgs e)
+        {
+            KullaniciEkleForm ekleForm = new KullaniciEkleForm();
+            ekleForm.MdiParent = this;
+            ekleForm.Show();
+
+        }
+
+        private void silKullanicibtn_Click(object sender, EventArgs e)
+        {
+            KullaniciSilForm kSil = new KullaniciSilForm();
+            kSil.MdiParent = this;
+            kSil.Show();
 
         }
     }

@@ -64,6 +64,7 @@
             this.silKullanicibtn.TabIndex = 3;
             this.silKullanicibtn.Text = "                       Sil";
             this.silKullanicibtn.UseVisualStyleBackColor = false;
+            this.silKullanicibtn.Click += new System.EventHandler(this.silKullanicibtn_Click);
             // 
             // guncelleKullanicibtn
             // 
@@ -94,6 +95,7 @@
             this.ekleKullanicibtn.TabIndex = 1;
             this.ekleKullanicibtn.Text = "                     Ekle";
             this.ekleKullanicibtn.UseVisualStyleBackColor = false;
+            this.ekleKullanicibtn.Click += new System.EventHandler(this.ekleKullanicibtn_Click);
             // 
             // button1
             // 
