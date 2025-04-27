@@ -35,7 +35,6 @@ namespace KutuphaneOtomasyonWinForm.Kullanici
             {
                 int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
                 var kullanici = db.Kullanicilar.Where(x => x.kullanici_id == secilenId).FirstOrDefault();
-                db.Kullanicilar.Remove(kullanici);
                 db.SaveChanges();
                 Listele();
 
