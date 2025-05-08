@@ -1,6 +1,6 @@
-﻿namespace KutuphaneOtomasyonWinForm.Kullanici
+﻿namespace KutuphaneOtomasyonWinForm.Kaynak
 {
-    partial class KullaniciSilForm
+    partial class KaynakSilForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,9 +36,9 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(113)))), ((int)(((byte)(163)))));
-            this.button1.Location = new System.Drawing.Point(12, 34);
+            this.button1.Location = new System.Drawing.Point(12, 23);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 75);
+            this.button1.Size = new System.Drawing.Size(180, 83);
             this.button1.TabIndex = 0;
             this.button1.Text = "Sil";
             this.button1.UseVisualStyleBackColor = false;
@@ -47,24 +47,24 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 151);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 144);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1123, 550);
+            this.dataGridView1.Size = new System.Drawing.Size(1245, 555);
             this.dataGridView1.TabIndex = 1;
             // 
-            // KullaniciSilForm
+            // KaynakSilForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(204)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(1147, 713);
+            this.ClientSize = new System.Drawing.Size(1269, 711);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
-            this.Name = "KullaniciSilForm";
-            this.Text = "KullaniciSilForm";
-            this.Load += new System.EventHandler(this.KullaniciSilForm_Load);
+            this.Name = "KaynakSilForm";
+            this.Text = "KaynakSilForm";
+            this.Load += new System.EventHandler(this.KaynakSilForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

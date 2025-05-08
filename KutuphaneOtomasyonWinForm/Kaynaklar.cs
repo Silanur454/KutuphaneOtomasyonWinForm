@@ -12,22 +12,20 @@ namespace KutuphaneOtomasyonWinForm
     using System;
     using System.Collections.Generic;
     
-    public partial class Kullanicilar
+    public partial class Kaynaklar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kullanicilar()
+        public Kaynaklar()
         {
             this.Kayitlar = new HashSet<Kayitlar>();
         }
     
-        public int kullanici_id { get; set; }
-        public string kullanici_ad { get; set; }
-        public string kullanici_soyad { get; set; }
-        public string kullanici_tc { get; set; }
-        public string kullanici_mail { get; set; }
-        public string kullanici_tel { get; set; }
-        public Nullable<double> kullanici_ceza { get; set; }
-        public string kullanici_cinsiyet { get; set; }
+        public int kaynak_id { get; set; }
+        public string kaynak_ad { get; set; }
+        public string kaynak_yazar { get; set; }
+        public string kaynak_yayıncı { get; set; }
+        public Nullable<int> kaynak_sayfasayisi { get; set; }
+        public Nullable<System.DateTime> kaynak_basımtarihi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kayitlar> Kayitlar { get; set; }

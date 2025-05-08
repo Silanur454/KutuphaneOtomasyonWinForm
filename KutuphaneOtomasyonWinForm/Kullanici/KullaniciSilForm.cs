@@ -16,15 +16,14 @@ namespace KutuphaneOtomasyonWinForm.Kullanici
         {
             InitializeComponent();
         }
-
-        KutuphaneOtomasyonuEntities db = new KutuphaneOtomasyonuEntities();
+        KutuphaneOtomasyonuEntities db=new KutuphaneOtomasyonuEntities();
         public void Listele()
         {
-
             var kullanicilar = db.Kullanicilar.ToList();
             dataGridView1.DataSource = kullanicilar.ToList();
 
         }
+
         private void KullaniciSilForm_Load(object sender, EventArgs e)
         {
             Listele();
@@ -32,13 +31,10 @@ namespace KutuphaneOtomasyonWinForm.Kullanici
 
         private void button1_Click(object sender, EventArgs e)
         {
-            {
-                int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
-                var kullanici = db.Kullanicilar.Where(x => x.kullanici_id == secilenId).FirstOrDefault();
-                db.SaveChanges();
-                Listele();
-
-            }
+            int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
+            var kullanici = db.Kullanicilar.Where(x => x.kullanici_id == secilenId).FirstOrDefault();
+            db.Kullanicilar.Remove(kullanici);
+            db.SaveChanges();
         }
     }
 }

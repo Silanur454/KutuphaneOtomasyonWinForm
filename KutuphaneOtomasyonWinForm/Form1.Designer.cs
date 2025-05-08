@@ -74,6 +74,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(204)))), ((int)(((byte)(227)))));
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(149, 51);
@@ -85,7 +86,7 @@
             // 
             // personelGirisbtn
             // 
-            this.personelGirisbtn.BackColor = System.Drawing.Color.SkyBlue;
+            this.personelGirisbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(204)))), ((int)(((byte)(227)))));
             this.personelGirisbtn.Location = new System.Drawing.Point(124, 297);
             this.personelGirisbtn.Name = "personelGirisbtn";
             this.personelGirisbtn.Size = new System.Drawing.Size(143, 40);
