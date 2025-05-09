@@ -129,6 +129,13 @@ namespace KutuphaneOtomasyonWinForm
             odunc.Show();
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            GeriAlForm geri = new GeriAlForm();
+            geri.MdiParent = this;
+            geri.Show();
+        }
     }
 }
 

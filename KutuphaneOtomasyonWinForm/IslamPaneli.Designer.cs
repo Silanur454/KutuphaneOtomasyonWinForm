@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IslamPaneli));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.silKaynakbtn = new System.Windows.Forms.Button();
             this.guncelleKaynakbtn = new System.Windows.Forms.Button();
             this.ekleKaynakbtn = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             this.ekleKullanicibtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.kullaniciBilgiPanel = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(204)))), ((int)(((byte)(227)))));
+            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.silKaynakbtn);
             this.panel1.Controls.Add(this.guncelleKaynakbtn);
@@ -62,6 +64,23 @@
             this.panel1.Size = new System.Drawing.Size(235, 727);
             this.panel1.TabIndex = 0;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(0, 520);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(235, 80);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "                  Ödünç Ver";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // silKaynakbtn
             // 
             this.silKaynakbtn.BackColor = System.Drawing.Color.Silver;
@@ -71,7 +90,7 @@
             this.silKaynakbtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.silKaynakbtn.Image = ((System.Drawing.Image)(resources.GetObject("silKaynakbtn.Image")));
             this.silKaynakbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.silKaynakbtn.Location = new System.Drawing.Point(0, 450);
+            this.silKaynakbtn.Location = new System.Drawing.Point(0, 460);
             this.silKaynakbtn.Name = "silKaynakbtn";
             this.silKaynakbtn.Size = new System.Drawing.Size(235, 60);
             this.silKaynakbtn.TabIndex = 7;
@@ -88,7 +107,7 @@
             this.guncelleKaynakbtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.guncelleKaynakbtn.Image = ((System.Drawing.Image)(resources.GetObject("guncelleKaynakbtn.Image")));
             this.guncelleKaynakbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.guncelleKaynakbtn.Location = new System.Drawing.Point(0, 390);
+            this.guncelleKaynakbtn.Location = new System.Drawing.Point(0, 400);
             this.guncelleKaynakbtn.Name = "guncelleKaynakbtn";
             this.guncelleKaynakbtn.Size = new System.Drawing.Size(235, 60);
             this.guncelleKaynakbtn.TabIndex = 6;
@@ -105,7 +124,7 @@
             this.ekleKaynakbtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ekleKaynakbtn.Image = ((System.Drawing.Image)(resources.GetObject("ekleKaynakbtn.Image")));
             this.ekleKaynakbtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ekleKaynakbtn.Location = new System.Drawing.Point(0, 330);
+            this.ekleKaynakbtn.Location = new System.Drawing.Point(0, 340);
             this.ekleKaynakbtn.Name = "ekleKaynakbtn";
             this.ekleKaynakbtn.Size = new System.Drawing.Size(235, 60);
             this.ekleKaynakbtn.TabIndex = 5;
@@ -122,9 +141,9 @@
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 255);
+            this.button2.Location = new System.Drawing.Point(0, 260);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(235, 75);
+            this.button2.Size = new System.Drawing.Size(235, 80);
             this.button2.TabIndex = 4;
             this.button2.Text = "                  Kaynaklar";
             this.button2.UseVisualStyleBackColor = false;
@@ -137,7 +156,7 @@
             this.silKullanicibtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.silKullanicibtn.Image = ((System.Drawing.Image)(resources.GetObject("silKullanicibtn.Image")));
             this.silKullanicibtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.silKullanicibtn.Location = new System.Drawing.Point(0, 195);
+            this.silKullanicibtn.Location = new System.Drawing.Point(0, 200);
             this.silKullanicibtn.Name = "silKullanicibtn";
             this.silKullanicibtn.Size = new System.Drawing.Size(235, 60);
             this.silKullanicibtn.TabIndex = 3;
@@ -152,7 +171,7 @@
             this.guncelleKullanicibtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guncelleKullanicibtn.Image = ((System.Drawing.Image)(resources.GetObject("guncelleKullanicibtn.Image")));
             this.guncelleKullanicibtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.guncelleKullanicibtn.Location = new System.Drawing.Point(0, 135);
+            this.guncelleKullanicibtn.Location = new System.Drawing.Point(0, 140);
             this.guncelleKullanicibtn.Name = "guncelleKullanicibtn";
             this.guncelleKullanicibtn.Size = new System.Drawing.Size(235, 60);
             this.guncelleKullanicibtn.TabIndex = 2;
@@ -169,7 +188,7 @@
             this.ekleKullanicibtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ekleKullanicibtn.Image = ((System.Drawing.Image)(resources.GetObject("ekleKullanicibtn.Image")));
             this.ekleKullanicibtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ekleKullanicibtn.Location = new System.Drawing.Point(0, 75);
+            this.ekleKullanicibtn.Location = new System.Drawing.Point(0, 80);
             this.ekleKullanicibtn.Name = "ekleKullanicibtn";
             this.ekleKullanicibtn.Size = new System.Drawing.Size(235, 60);
             this.ekleKullanicibtn.TabIndex = 1;
@@ -188,7 +207,7 @@
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(235, 75);
+            this.button1.Size = new System.Drawing.Size(235, 80);
             this.button1.TabIndex = 0;
             this.button1.Text = "                  Kullanıcılar";
             this.button1.UseVisualStyleBackColor = false;
@@ -203,22 +222,22 @@
             this.kullaniciBilgiPanel.Size = new System.Drawing.Size(1176, 57);
             this.kullaniciBilgiPanel.TabIndex = 1;
             // 
-            // button3
+            // button4
             // 
-            this.button3.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 510);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(235, 75);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "                  Ödünç Ver";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button4.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 600);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(235, 80);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "                  Geri Al";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // IslamPaneli
             // 
@@ -250,5 +269,6 @@
         private System.Windows.Forms.Button ekleKaynakbtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
