@@ -82,20 +82,20 @@ namespace KutuphaneOtomasyonWinForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-                if (ekleKaynakbtn.Visible == false)
-                {
 
-                    ekleKaynakbtn.Visible = true;
-                    guncelleKaynakbtn.Visible = true;
-                    silKaynakbtn.Visible = true;
-                }
-                else
-                {
-                    ekleKaynakbtn.Visible = false;
-                    guncelleKaynakbtn.Visible = false;
-                    silKaynakbtn.Visible = false;
-                }
+            if (ekleKaynakbtn.Visible == false)
+            {
+
+                ekleKaynakbtn.Visible = true;
+                guncelleKaynakbtn.Visible = true;
+                silKaynakbtn.Visible = true;
+            }
+            else
+            {
+                ekleKaynakbtn.Visible = false;
+                guncelleKaynakbtn.Visible = false;
+                silKaynakbtn.Visible = false;
+            }
             KaynakListeForm kliste = new KaynakListeForm();
             kliste.MdiParent = this;
             kliste.Show();
@@ -136,7 +136,14 @@ namespace KutuphaneOtomasyonWinForm
             geri.MdiParent = this;
             geri.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            CezaForm ceza = new CezaForm();
+            ceza.MdiParent = this;
+            ceza.Show();
+
+        }
     }
 }
-
 

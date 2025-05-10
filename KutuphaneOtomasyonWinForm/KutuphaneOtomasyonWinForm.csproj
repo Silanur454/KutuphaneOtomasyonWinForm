@@ -70,6 +70,12 @@
     <Compile Include="Kayitlar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Kayit\CezaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kayit\CezaForm.Designer.cs">
+      <DependentUpon>CezaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kayit\GeriAlForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IslamPaneli.resx">
       <DependentUpon>IslamPaneli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kayit\CezaForm.resx">
+      <DependentUpon>CezaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kayit\GeriAlForm.resx">
       <DependentUpon>GeriAlForm.cs</DependentUpon>

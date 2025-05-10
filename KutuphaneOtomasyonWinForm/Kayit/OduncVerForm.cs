@@ -18,16 +18,31 @@ namespace KutuphaneOtomasyonWinForm.Kayit
         }
         KutuphaneOtomasyonuEntities db = new KutuphaneOtomasyonuEntities();
 
+        private bool KullaniciCezaKontrol(int kullaniciId)
+        {
+            using (var yeniDb = new KutuphaneOtomasyonuEntities())
+            {
+                var kullanici = yeniDb.Kullanicilar.FirstOrDefault(k => k.kullanici_id == kullaniciId);
+                if (kullanici == null)
+                    return true;
+
+                return kullanici.kullanici_ceza < 30;
+            }
+        }
+
 
         private void OduncVerForm_Load(object sender, EventArgs e)
         {
+
             //listeledik (kayıtlar)
             var kayitListe= db.Kayitlar.ToList();
             dataGridView1.DataSource = kayitListe.ToList();
 
+
             //listeledik (kaynaklar)
             var kaynakList = db.Kaynaklar.ToList();
             dataGridView2.DataSource = kaynakList.ToList();
+
 
 
             //istenmeyen kolonları gizledik
@@ -36,11 +51,21 @@ namespace KutuphaneOtomasyonWinForm.Kayit
 
 
             //kolon adlarını düzenledik
+            dataGridView1.Columns[0].HeaderText = "Kayit Id";
             dataGridView1.Columns[1].HeaderText = "Kullanıcı";
             dataGridView1.Columns[2].HeaderText = "Kaynak Ad";
             dataGridView1.Columns[3].HeaderText = "Alış Tarih";
             dataGridView1.Columns[4].HeaderText = "Son Tarih";
             dataGridView1.Columns[5].HeaderText = "Durum";
+
+
+            dataGridView2.Columns[6].Visible = false;
+            dataGridView2.Columns[0].HeaderText = "Kaynak Id";
+            dataGridView2.Columns[1].HeaderText = "Kitap Adı";
+            dataGridView2.Columns[2].HeaderText = "Yazar Adı";
+            dataGridView2.Columns[3].HeaderText = "Yayınevi";
+            dataGridView2.Columns[4].HeaderText = "Sayfa Sayısı";
+            dataGridView2.Columns[5].HeaderText = "Basım Tarihi";
 
         }
 
@@ -72,6 +97,12 @@ namespace KutuphaneOtomasyonWinForm.Kayit
             int secilenKitapId = Convert.ToInt16(dataGridView2.CurrentRow.Cells[0].Value);
             var secilenKitap = db.Kaynaklar.Where(x => x.kaynak_id == secilenKitapId).FirstOrDefault();
 
+            // Ceza kontrolü yapalım
+            if (!KullaniciCezaKontrol(secilenKisi.kullanici_id))
+            {
+                MessageBox.Show("Bu kullanıcıya cezası 30 TL veya üzeri olduğu için kitap ödünç verilemez!");
+                return;
+            }
 
 
             Kayitlar yeniKayit = new Kayitlar();
