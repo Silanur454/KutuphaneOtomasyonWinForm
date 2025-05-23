@@ -2,13 +2,6 @@
 using KutuphaneOtomasyonWinForm.Kaynak;
 using KutuphaneOtomasyonWinForm.Kullanici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KutuphaneOtomasyonWinForm
@@ -20,7 +13,9 @@ namespace KutuphaneOtomasyonWinForm
             InitializeComponent();
             this.IsMdiContainer = true;
         }
+
         KutuphaneOtomasyonuEntities db = new KutuphaneOtomasyonuEntities();
+
         private void IslamPaneli_Load(object sender, EventArgs e)
         {
             // kullanıcı butonları girişte kapalıdır. (ekle-güncelle-sil)
@@ -34,58 +29,96 @@ namespace KutuphaneOtomasyonWinForm
             silKaynakbtn.Visible = false;
         }
 
+        // Kullanıcı formları
+        private KullaniciListeForm klisteForm;
+        private KullaniciEkleForm ekleForm;
+        private KullaniciSilForm silForm;
+        private KullaniciGuncelleForm guncelleForm;
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (ekleKullanicibtn.Visible == false)
             {
-
                 ekleKullanicibtn.Visible = true;
                 guncelleKullanicibtn.Visible = true;
                 silKullanicibtn.Visible = true;
+
+                if (klisteForm == null || klisteForm.IsDisposed)
+                {
+                    klisteForm = new KullaniciListeForm();
+                    klisteForm.MdiParent = this;
+                    klisteForm.FormClosed += (s, args) => klisteForm = null;
+                    klisteForm.Show();
+                }
             }
             else
             {
                 ekleKullanicibtn.Visible = false;
                 guncelleKullanicibtn.Visible = false;
                 silKullanicibtn.Visible = false;
+
+                if (klisteForm != null)
+                {
+                    klisteForm.Close();
+                }
             }
-            KullaniciListeForm klisteForm = new KullaniciListeForm();
-            klisteForm.MdiParent = this;
-            klisteForm.Show();
-
-
-
         }
 
         private void ekleKullanicibtn_Click(object sender, EventArgs e)
         {
-            KullaniciEkleForm ekleForm = new KullaniciEkleForm();
-            ekleForm.MdiParent = this;
-            ekleForm.Show();
-
+            if (ekleForm == null || ekleForm.IsDisposed)
+            {
+                ekleForm = new KullaniciEkleForm();
+                ekleForm.MdiParent = this;
+                ekleForm.FormClosed += (s, args) => ekleForm = null;
+                ekleForm.Show();
+            }
+            else
+            {
+                ekleForm.Close();
+            }
         }
 
         private void silKullanicibtn_Click(object sender, EventArgs e)
         {
-            KullaniciSilForm kSil = new KullaniciSilForm();
-            kSil.MdiParent = this;
-            kSil.Show();
-
+            if (silForm == null || silForm.IsDisposed)
+            {
+                silForm = new KullaniciSilForm();
+                silForm.MdiParent = this;
+                silForm.FormClosed += (s, args) => silForm = null;
+                silForm.Show();
+            }
+            else
+            {
+                silForm.Close();
+            }
         }
 
         private void guncelleKullanicibtn_Click(object sender, EventArgs e)
         {
-            KullaniciGuncelleForm kGuncel = new KullaniciGuncelleForm();
-            kGuncel.MdiParent = this;
-            kGuncel.Show();
+            if (guncelleForm == null || guncelleForm.IsDisposed)
+            {
+                guncelleForm = new KullaniciGuncelleForm();
+                guncelleForm.MdiParent = this;
+                guncelleForm.FormClosed += (s, args) => guncelleForm = null;
+                guncelleForm.Show();
+            }
+            else
+            {
+                guncelleForm.Close();
+            }
         }
+
+        // Kaynak formları
+        private KaynakListeForm kaynakListeForm;
+        private KaynakEkleForm kaynakEkleForm;
+        private KaynakSilForm kaynakSilForm;
+        private KaynakGuncelleForm kaynakGuncelleForm;
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             if (ekleKaynakbtn.Visible == false)
             {
-
                 ekleKaynakbtn.Visible = true;
                 guncelleKaynakbtn.Visible = true;
                 silKaynakbtn.Visible = true;
@@ -96,54 +129,113 @@ namespace KutuphaneOtomasyonWinForm
                 guncelleKaynakbtn.Visible = false;
                 silKaynakbtn.Visible = false;
             }
-            KaynakListeForm kliste = new KaynakListeForm();
-            kliste.MdiParent = this;
-            kliste.Show();
+
+            if (kaynakListeForm == null || kaynakListeForm.IsDisposed)
+            {
+                kaynakListeForm = new KaynakListeForm();
+                kaynakListeForm.MdiParent = this;
+                kaynakListeForm.FormClosed += (s, args) => kaynakListeForm = null;
+                kaynakListeForm.Show();
+            }
+            else
+            {
+                kaynakListeForm.Close();
+            }
         }
 
         private void ekleKaynakbtn_Click(object sender, EventArgs e)
         {
-            KaynakEkleForm kEkle = new KaynakEkleForm();
-            kEkle.MdiParent = this;
-            kEkle.Show();
+            if (kaynakEkleForm == null || kaynakEkleForm.IsDisposed)
+            {
+                kaynakEkleForm = new KaynakEkleForm();
+                kaynakEkleForm.MdiParent = this;
+                kaynakEkleForm.FormClosed += (s, args) => kaynakEkleForm = null;
+                kaynakEkleForm.Show();
+            }
+            else
+            {
+                kaynakEkleForm.Close();
+            }
         }
 
         private void silKaynakbtn_Click(object sender, EventArgs e)
         {
-            KaynakSilForm kSil = new KaynakSilForm();
-            kSil.MdiParent = this;
-            kSil.Show();
+            if (kaynakSilForm == null || kaynakSilForm.IsDisposed)
+            {
+                kaynakSilForm = new KaynakSilForm();
+                kaynakSilForm.MdiParent = this;
+                kaynakSilForm.FormClosed += (s, args) => kaynakSilForm = null;
+                kaynakSilForm.Show();
+            }
+            else
+            {
+                kaynakSilForm.Close();
+            }
         }
 
         private void guncelleKaynakbtn_Click(object sender, EventArgs e)
         {
-            KaynakGuncelleForm kGuncel = new KaynakGuncelleForm();
-            kGuncel.MdiParent = this;
-            kGuncel.Show();
+            if (kaynakGuncelleForm == null || kaynakGuncelleForm.IsDisposed)
+            {
+                kaynakGuncelleForm = new KaynakGuncelleForm();
+                kaynakGuncelleForm.MdiParent = this;
+                kaynakGuncelleForm.FormClosed += (s, args) => kaynakGuncelleForm = null;
+                kaynakGuncelleForm.Show();
+            }
+            else
+            {
+                kaynakGuncelleForm.Close();
+            }
         }
+
+        // Diğer formlar
+        private OduncVerForm oduncForm;
+        private GeriAlForm geriForm;
+        private CezaForm cezaForm;
 
         private void button3_Click(object sender, EventArgs e)
         {
-            OduncVerForm odunc = new OduncVerForm();
-            odunc.MdiParent = this;
-            odunc.Show();
-
+            if (oduncForm == null || oduncForm.IsDisposed)
+            {
+                oduncForm = new OduncVerForm();
+                oduncForm.MdiParent = this;
+                oduncForm.FormClosed += (s, args) => oduncForm = null;
+                oduncForm.Show();
+            }
+            else
+            {
+                oduncForm.Close();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            GeriAlForm geri = new GeriAlForm();
-            geri.MdiParent = this;
-            geri.Show();
+            if (geriForm == null || geriForm.IsDisposed)
+            {
+                geriForm = new GeriAlForm();
+                geriForm.MdiParent = this;
+                geriForm.FormClosed += (s, args) => geriForm = null;
+                geriForm.Show();
+            }
+            else
+            {
+                geriForm.Close();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            CezaForm ceza = new CezaForm();
-            ceza.MdiParent = this;
-            ceza.Show();
-
+            if (cezaForm == null || cezaForm.IsDisposed)
+            {
+                cezaForm = new CezaForm();
+                cezaForm.MdiParent = this;
+                cezaForm.FormClosed += (s, args) => cezaForm = null;
+                cezaForm.Show();
+            }
+            else
+            {
+                cezaForm.Close();
+            }
         }
     }
 }
-

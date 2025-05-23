@@ -38,14 +38,26 @@ namespace KutuphaneOtomasyonWinForm.Kaynak
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int secilenId =Convert.ToInt16 (dataGridView1.CurrentRow.Cells[0].Value);
-            var silinenKaynak = db.Kaynaklar.Where(x => x.kaynak_id == secilenId).FirstOrDefault();
-            db.Kaynaklar.Remove(silinenKaynak);
-            db.SaveChanges();
+            DialogResult sonuc = MessageBox.Show("Seçilen kaynağı silmek istediğinizden emin misiniz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+            if (sonuc == DialogResult.Yes)
+            {
+                int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
+                var silinenKaynak = db.Kaynaklar.Where(x => x.kaynak_id == secilenId).FirstOrDefault();
 
-            var kaynaklar = db.Kaynaklar.ToList();
-            dataGridView1.DataSource = kaynaklar.ToList();
+                if (silinenKaynak != null)
+                {
+                    db.Kaynaklar.Remove(silinenKaynak);
+                    db.SaveChanges();
+
+                    MessageBox.Show("Kaynak başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Listeyi güncelle
+                var kaynaklar = db.Kaynaklar.ToList();
+                dataGridView1.DataSource = kaynaklar;
+            }
         }
+
     }
 }

@@ -45,10 +45,35 @@ namespace KutuphaneOtomasyonWinForm.Kullanici
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
-            var kullanici = db.Kullanicilar.Where(x => x.kullanici_id == secilenId).FirstOrDefault();
-            db.Kullanicilar.Remove(kullanici);
-            db.SaveChanges();
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Lütfen silmek için bir kullanıcı seçin.");
+                return;
+            }
+
+            DialogResult sonuc = MessageBox.Show("Bu kullanıcıyı silmek istediğinizden emin misiniz?",
+                                                 "Onayla",
+                                                 MessageBoxButtons.YesNo,
+                                                 MessageBoxIcon.Warning);
+
+            if (sonuc == DialogResult.Yes)
+            {
+                int secilenId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+                var kullanici = db.Kullanicilar.FirstOrDefault(x => x.kullanici_id == secilenId);
+
+                if (kullanici != null)
+                {
+                    db.Kullanicilar.Remove(kullanici);
+                    db.SaveChanges();
+                    MessageBox.Show("Kullanıcı başarıyla silindi.");
+                    Listele(); // Yeniden listele
+                }
+                else
+                {
+                    MessageBox.Show("Kullanıcı bulunamadı.");
+                }
+            }
         }
+
     }
 }

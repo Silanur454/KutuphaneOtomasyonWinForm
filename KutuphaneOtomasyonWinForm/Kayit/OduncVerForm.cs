@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
+
 
 namespace KutuphaneOtomasyonWinForm.Kayit
 {
@@ -15,7 +17,9 @@ namespace KutuphaneOtomasyonWinForm.Kayit
         public OduncVerForm()
         {
             InitializeComponent();
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting; // Renk için event
         }
+
         KutuphaneOtomasyonuEntities db = new KutuphaneOtomasyonuEntities();
 
         private bool KullaniciCezaKontrol(int kullaniciId)
@@ -30,36 +34,38 @@ namespace KutuphaneOtomasyonWinForm.Kayit
             }
         }
 
-
         private void OduncVerForm_Load(object sender, EventArgs e)
         {
+            var kayitList = from kayit in db.Kayitlar
+                            select new
+                            {
+                                Kullanici = kayit.Kullanicilar.kullanici_ad + " " + kayit.Kullanicilar.kullanici_soyad,
+                                Kaynak = kayit.Kaynaklar.kaynak_ad,
+                                AlisTarihi = kayit.alis_tarih,
+                                SonTarih = kayit.son_tarih,
+                                Durum = (kayit.durum ?? false) ? "İade Gerçekleşti" : "İade Gerçekleşmedi"
+                            };
 
-            //listeledik (kayıtlar)
-            var kayitListe= db.Kayitlar.ToList();
-            dataGridView1.DataSource = kayitListe.ToList();
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = kayitList.ToList();
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = kayitList.ToList();
+
+            // DURUM sütununu genişlet
+            dataGridView1.Columns["Durum"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
 
-            //listeledik (kaynaklar)
             var kaynakList = db.Kaynaklar.ToList();
-            dataGridView2.DataSource = kaynakList.ToList();
+            dataGridView2.DataSource = kaynakList;
 
+            // Kolon başlıklarını ayarla (dataGridView1)
+            dataGridView1.Columns[0].HeaderText = "Kullanıcı";
+            dataGridView1.Columns[1].HeaderText = "Kaynak";
+            dataGridView1.Columns[2].HeaderText = "Alış Tarihi";
+            dataGridView1.Columns[3].HeaderText = "Son Tarihi";
+            dataGridView1.Columns[4].HeaderText = "Durum";
 
-
-            //istenmeyen kolonları gizledik
-            dataGridView1.Columns[6].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
-
-
-            //kolon adlarını düzenledik
-            dataGridView1.Columns[0].HeaderText = "Kayit Id";
-            dataGridView1.Columns[1].HeaderText = "Kullanıcı";
-            dataGridView1.Columns[2].HeaderText = "Kaynak Ad";
-            dataGridView1.Columns[3].HeaderText = "Alış Tarih";
-            dataGridView1.Columns[4].HeaderText = "Son Tarih";
-            dataGridView1.Columns[5].HeaderText = "Durum";
-
-
-            dataGridView2.Columns[6].Visible = false;
+            // dataGridView2 başlıklarını ayarla
             dataGridView2.Columns[0].HeaderText = "Kaynak Id";
             dataGridView2.Columns[1].HeaderText = "Kitap Adı";
             dataGridView2.Columns[2].HeaderText = "Yazar Adı";
@@ -67,17 +73,40 @@ namespace KutuphaneOtomasyonWinForm.Kayit
             dataGridView2.Columns[4].HeaderText = "Sayfa Sayısı";
             dataGridView2.Columns[5].HeaderText = "Basım Tarihi";
 
+            // Fazladan kolon varsa gizle
+            if (dataGridView2.Columns.Count > 6)
+                dataGridView2.Columns[6].Visible = false;
+
+
+            // Bugün alınacak ve gecikmiş kitap sayısını hesapla
+            int bugunAlinacak = db.Kayitlar.Count(k =>
+                (k.durum == false || k.durum == null) &&
+                DbFunctions.TruncateTime(k.son_tarih) == DateTime.Today);
+
+            int geciken = db.Kayitlar.Count(k =>
+                (k.durum == false || k.durum == null) &&
+                DbFunctions.TruncateTime(k.son_tarih) < DateTime.Today);
+
+            lblBugunSayisi.Text = bugunAlinacak.ToString();
+            lblGecikmeSayisi.Text = geciken.ToString();
+
+            // Renk ve stil ayarı
+            lblBugunSayisi.ForeColor = Color.Blue;
+            lblGecikmeSayisi.ForeColor = Color.Red;
+            lblBugunSayisi.Font = new Font(lblBugunSayisi.Font, FontStyle.Bold);
+            lblGecikmeSayisi.Font = new Font(lblGecikmeSayisi.Font, FontStyle.Bold);
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+    private void button1_Click(object sender, EventArgs e)
         {
             string arananSecilen = TCBultxt.Text;
-            var kullaniciVarMi = db.Kullanicilar.Where(x=>x.kullanici_tc==arananSecilen).FirstOrDefault();
+            var kullaniciVarMi = db.Kullanicilar.FirstOrDefault(x => x.kullanici_tc == arananSecilen);
 
             if (kullaniciVarMi != null)
-                label2.Text = kullaniciVarMi.kullanici_ad + "" + kullaniciVarMi.kullanici_soyad;
+                label2.Text = kullaniciVarMi.kullanici_ad + " " + kullaniciVarMi.kullanici_soyad;
             else
-                label2.Text = "Böyle Bir Kullanını Bulunamadı!!!";
+                label2.Text = "Böyle Bir Kullanıcı Bulunamadı!!!";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -91,19 +120,35 @@ namespace KutuphaneOtomasyonWinForm.Kayit
         {
             //kişiyi aldık
             string secilenKisiTC = TCBultxt.Text;
-            var secilenKisi = db.Kullanicilar.Where(x => x.kullanici_tc.Equals(secilenKisiTC)).FirstOrDefault();
+            var secilenKisi = db.Kullanicilar.FirstOrDefault(x => x.kullanici_tc.Equals(secilenKisiTC));
 
-            //kitabi aldık
-            int secilenKitapId = Convert.ToInt16(dataGridView2.CurrentRow.Cells[0].Value);
-            var secilenKitap = db.Kaynaklar.Where(x => x.kaynak_id == secilenKitapId).FirstOrDefault();
+            if (secilenKisi == null)
+            {
+                MessageBox.Show("Seçilen kullanıcı bulunamadı.");
+                return;
+            }
 
-            // Ceza kontrolü yapalım
+            //kitabı aldık
+            if (dataGridView2.CurrentRow == null)
+            {
+                MessageBox.Show("Lütfen bir kitap seçin.");
+                return;
+            }
+
+            int secilenKitapId = Convert.ToInt32(dataGridView2.CurrentRow.Cells[0].Value);
+            var secilenKitap = db.Kaynaklar.FirstOrDefault(x => x.kaynak_id == secilenKitapId);
+
+            if (secilenKitap == null)
+            {
+                MessageBox.Show("Seçilen kitap veritabanında bulunamadı.");
+                return;
+            }
+
             if (!KullaniciCezaKontrol(secilenKisi.kullanici_id))
             {
                 MessageBox.Show("Bu kullanıcıya cezası 30 TL veya üzeri olduğu için kitap ödünç verilemez!");
                 return;
             }
-
 
             Kayitlar yeniKayit = new Kayitlar();
             yeniKayit.kitap_id = secilenKitap.kaynak_id;
@@ -114,10 +159,55 @@ namespace KutuphaneOtomasyonWinForm.Kayit
             db.Kayitlar.Add(yeniKayit);
             db.SaveChanges();
 
-            var kayitListe = db.Kayitlar.ToList();
-            dataGridView1.DataSource = kayitListe.ToList();
+            var guncelKayitList = from kayit in db.Kayitlar
+                                  select new
+                                  {
+                                      Kullanici = kayit.Kullanicilar.kullanici_ad + " " + kayit.Kullanicilar.kullanici_soyad,
+                                      Kaynak = kayit.Kaynaklar.kaynak_ad,
+                                      AlisTarihi = kayit.alis_tarih,
+                                      SonTarih = kayit.son_tarih,
+                                      Durum = (kayit.durum ?? false) ? "İade Gerçekleşti" : "İade Gerçekleşmedi"
+                                  };
+
+            dataGridView1.DataSource = guncelKayitList.ToList();
+
+
+            // Güncel sayıları tekrar hesapla
+            int bugunAlinacak = db.Kayitlar.Count(k =>
+                (k.durum == false || k.durum == null) &&
+                DbFunctions.TruncateTime(k.son_tarih) == DateTime.Today);
+
+            int geciken = db.Kayitlar.Count(k =>
+                (k.durum == false || k.durum == null) &&
+                DbFunctions.TruncateTime(k.son_tarih) < DateTime.Today);
+
+            lblBugunSayisi.Text = bugunAlinacak.ToString();
+            lblGecikmeSayisi.Text = geciken.ToString();
+
+
+
         }
 
+        //Durum sütununu renklendir
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "Durum")
+            {
+                if (e.Value != null)
+                {
+                    string durum = e.Value.ToString();
+                    if (durum == "İade Gerçekleşti")
+                    {
+                        e.CellStyle.ForeColor = Color.Green;
+                        e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+                    }
+                    else if (durum == "İade Gerçekleşmedi")
+                    {
+                        e.CellStyle.ForeColor = Color.Red;
+                        e.CellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
+                    }
+                }
+            }
+        }
     }
-    }
-
+}

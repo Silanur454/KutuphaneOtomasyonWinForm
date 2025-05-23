@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IslamPaneli));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.silKaynakbtn = new System.Windows.Forms.Button();
             this.guncelleKaynakbtn = new System.Windows.Forms.Button();
@@ -40,8 +42,6 @@
             this.ekleKullanicibtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.kullaniciBilgiPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(229, 747);
             this.panel1.TabIndex = 0;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(0, 660);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(229, 75);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "                  Ceza Sistemi";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.MidnightBlue;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 585);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(229, 75);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "                  Geri Al";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -223,40 +257,6 @@
             this.kullaniciBilgiPanel.Name = "kullaniciBilgiPanel";
             this.kullaniciBilgiPanel.Size = new System.Drawing.Size(1197, 58);
             this.kullaniciBilgiPanel.TabIndex = 1;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 585);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(229, 75);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "                  Geri Al";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 660);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(229, 75);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "                  Ceza Sistemi";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // IslamPaneli
             // 
